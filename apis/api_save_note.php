@@ -1,0 +1,47 @@
+<?php
+
+require_once(__DIR__.'/../db.php');
+
+if(!isset($_SESSION)){
+  session_start();
+}
+
+ if( !$_POST['note'] ){
+  header('Location: /admin/You need to write something to save it...');
+  exit();  
+}else{
+    echo 'The note is saved';
+}
+
+
+//encrypting with CBC
+$alg='AES-128-CBC';
+//$iv=bin2hex(openssl_random_pseudo_bytes(openssl_cipher_iv_length(($alg))));
+$iv= bin2hex(random_bytes(8));
+//echo $iv;
+$plaintext = $_POST['note'];
+$key="secretKey";
+
+var_dump($iv);
+ try{
+  $db->beginTransaction();
+  
+  $q = $db->prepare('UPDATE user 
+  SET note=:note  WHERE uuid = :uuid');
+  $q2 = $db->prepare('UPDATE user 
+  SET iv=:iv  WHERE uuid = :uuid');
+
+  $q->bindValue(':uuid', $_SESSION['uuid']);
+  $q->bindValue(':note', openssl_encrypt($plaintext, $alg, $key, 0, $iv));
+  $q->execute();
+  
+  $q2->bindValue(':uuid', $_SESSION['uuid']);
+  $q2->bindValue(':iv', $iv);
+  $q2->execute();
+
+  $db->commit();
+ header('Location: /admin/The note was saved! Click the below button to retrieve it'); 
+
+}catch(PDOException $ex){
+  echo $ex;
+} 
