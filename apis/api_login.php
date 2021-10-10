@@ -42,12 +42,7 @@ if(!$user){
   exit();
 } 
 
- $peber = "2C5eV0XtQVKrXA==";
-  //  $salt = base64_encode(openssl_random_pseudo_bytes(10));
-    //$password= "password";
-   // echo $random."<br>";
-   // echo hash("sha256", $password.$random.$peber)."<br>";
-
+$peber = "2C5eV0XtQVKrXA==";
 $timeStamp = $user['logged_time']; //timestamp
 $currentTime = time(); //timestamp
 $seconds = $currentTime - $timeStamp;
