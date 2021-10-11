@@ -17,7 +17,9 @@ if(!isset($_SESSION)){
 //encrypting with CBC
 $alg='AES-128-CBC';
 //$iv=bin2hex(openssl_random_pseudo_bytes(openssl_cipher_iv_length(($alg))));
-$iv= bin2hex(random_bytes(8));
+ $iv_len=openssl_cipher_iv_length($alg);
+ //bin2hex => remember to use it to revert to a string
+$iv=bin2hex(openssl_random_pseudo_bytes($iv_len));
 //echo $iv;
 $plaintext = $_POST['note'];
 $key="secretKey";
