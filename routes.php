@@ -2,19 +2,34 @@
 
 require_once(__DIR__ . '/router.php');
 
-// ##############################
+
 get('/', function(){
    require_once(__DIR__ . '/views/index.php');
+   
+});
+
+##############################
+######### EXERCISES ##########
+##############################
+
+get('/bruteforce', function(){
+   require_once(__DIR__ . '/exercises/bruteForce.php');
 
 });
+
+get('/undervisning', function(){
+   require_once(__DIR__ . '/exercises/undervisning.php');
+
+});
+
+##############################
+##############################
+
 get('/index/:display_error', function($display_error){
    require_once(__DIR__ . '/views/index.php');
 
 });
-get('/undervisning', function(){
-   require_once(__DIR__ . '/undervisning.php');
 
-});
 get('/signup', function(){
    require_once(__DIR__ . '/views/signup.php');
 
@@ -46,6 +61,11 @@ get('/logout', function(){
    require_once(__DIR__ . '/bridges/bridge_logout.php');
 
 });
+
+##############################
+############ POST ############
+##############################
+
 post('/login', function(){
    require_once(__DIR__ . '/apis/api_login.php');
 

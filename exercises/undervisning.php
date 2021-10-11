@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__.'/views/top.php');
+require_once(__DIR__.'/../views/top.php');
 
 //salting and pebering
 $peber = "2C5eV0XtQVKrXA==";
@@ -47,4 +47,4 @@ $decrypted=openssl_decrypt($ciphertext, $alg, $key, 0, $iv);
 
 echo 'decrypted: '.$decrypted;
 
-require_once(__DIR__.'/views/bottom.php');
+require_once(__DIR__.'/../views/bottom.php');
